@@ -23,9 +23,49 @@
   <body>
     <h1>Sanakorakone</h1>
 
+    <div class="container">
+      <div id="infinitive"></div>
+      <div id="tense"></div>
+      <div id="negative"></div>
+
+        <span id="person"></span>
+        <label for="answer" class="sr-only">Answer</label>
+        <input id="answer" class="form-control" placeholder="Answer" autofocus>
+
+        <button class="btn btn-lg btn-primary btn-block" id="check">Check</button>
+
+      <div class="center-block">
+	      <p id="judgment"></p>
+      </div>
+    </div>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script>
+
+      var populate_question = function(data) {
+	$("#infinitive").text(data.infinitive);
+	$("#person").text(data.person);
+	$("#tense").text(data.tense);
+	$("#negative").text(data.negative);
+	var check_answer = function() {
+          if ($("#answer").text() == data.answer) {
+            $("#judgment").text("Yay!").removeClass("bg-danger").addClass("bg-success");
+	  } else {
+            $("#judgment").text(data.answer).removeClass("bg-success").addClass("bg-danger");
+	  }
+        };
+	$("#check").click(check_answer);
+      };
+
+      var get_question = function() {
+        $.getJSON("/generate_example/", populate_question);
+      };
+
+      $(document).ready( get_question );
+    </script>
   </body>
 </html>
