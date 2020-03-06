@@ -20,7 +20,7 @@ def generate_example(request):
     if req_tenses:
         tense_list = req_tenses
     else:
-        tense_list = tenses.keys()
+        tense_list = list(tenses)
     tense = random.choice(tense_list)
     negatives = (True, False)
     person, negative = random.choice(list(persons)), random.choice(negatives)
