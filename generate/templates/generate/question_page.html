@@ -1,97 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-				<head>
-								<meta charset="utf-8">
-								<meta http-equiv="X-UA-Compatible" content="IE=edge">
-								<meta name="viewport" content="width=device-width, initial-scale=1">
-								<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-								<title>Sanakorakone</title>
+								<head>
+																<meta charset="utf-8">
+																<meta http-equiv="X-UA-Compatible" content="IE=edge">
+																<meta name="viewport" content="width=device-width, initial-scale=1">
+																<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+																<title>Sanakorakone</title>
 
-								<!-- Bootstrap -->
-								<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+																<!-- Bootstrap -->
+																<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+								</head>
+								<body>
 
-								<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-								<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-								<!--[if lt IE 9]>
-												<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-												<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-								<![endif]-->
-				</head>
-				<body>
-								<h1 class="center-block">Sanakorakone</h1>
+																<div class="container-fluid">
+																																<div class="row">
+																																								<h1 class="center-block display-4">Sanakorakone</h1>
+																																</div>
+																																<div class="row">
+																																								<div class="col">
+																																																<div class="card">
+																																																								<div class="card-body">
+																																																																<h3 class="card-title" id="infinitive"></h3>
+																																																																<h4 class="card-subtitle mb-2 text-muted"><span id="negative"></span> <span id="tense"></span></h4>
+																																																								</div>
+																																																</div>
+																																								</div>
+																																</div>
 
-								<div class="container-fluid">
-												<div class="row">
-																<div class="col">
-																				<div class="card">
-																								<div class="card-body">
-																												<h3 class="card-title" id="infinitive"></h3>
-																												<h4 class="card-subtitle mb-2 text-muted"><span id="negative"></span> <span id="tense"></span></h4>
-																								</div>
-																				</div>
+																								<form>
+																																<div class="row">
+																																								<div class="col">
+																																																<div class="input-group input-group-lg">
+																																																								<div class="input-group-prepend">
+																																																																<span class="input-group-text" id="person"></span>
+																																																								</div>
+																																																								<input type="text" class="form-control" aria-label="Answer" aria-describedby="person" id="answer" autofocus>
+																																																</div>
+																																								</div>
+																																</div>
+																																<hr/>
+																																<div class="row">
+																																								<div class="col">
+																																																<button class="btn btn-lg btn-primary btn-block" id="check">Tarkista</button>
+																																								</div>
+																																								<div class="col">
+																																																<button class="btn btn-lg btn-secondary btn-block" onClick="get_question();" id="new">Uudelleen</button>
+																																								</div>
+																																</div>
+																																<hr/>
+																																<div class="row">
+																																								<div class="col alert lead" id="judgment">
+																																								</div>
+																																</div>
+																																<hr/>
+																																<div class="row">
+																																								<div class="col">
+																																																<div class="form-group">
+																																																								<label for="tense">Aikamuoto</label>
+																																																								<select multiple class="form-control" id="tense">
+																																																																<option>preseens</option>
+																																																																<option>imperfekti</option>
+																																																																<option>perfekti</option>
+																																																																<option>plusqvamperfekti</option>
+																																																								</select>
+																																																</div>
+																																																<div class="form-check">
+																																																								<input class="form-check-input" type="checkbox" value="" id="negatiivinen">
+																																																								<label class="form-check-label" for="negatiivinen">negatiivisen kanssa</label>
+																																																</div>
+																																																<div class="form-group">
+																																																								<label for="verbtype">Verbityyppi</label>
+																																																								<select multiple class="form-control" id="verbtype">
+																																																																<option>1</option>
+																																																																<option>2</option>
+																																																																<option>3</option>
+																																																																<option>4</option>
+																																																																<option>5</option>
+																																																																<option>6</option>
+																																																								</select>
+																																																</div>
+																																																<div class="form-group">
+																																																								<label for="exampleFormControlTextarea1">Verbi</label>
+																																																								<input class="form-control" id="exampleFormControlTextarea1"></input>
+																																																</div>
+																																								</div>
+																																</div>
+																								</form>	
 																</div>
-												</div>
+																<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+																<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+																<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-																<div class="row">
-																				<div class="col">
-																								<div class="input-group input-group-lg">
-																												<div class="input-group-prepend">
-																																<span class="input-group-text" id="person">SPAN</span>
-																												</div>
-																												<input type="text" class="form-control" aria-label="Answer" aria-describedby="person" id="answer">
-																								</div>
-																				</div>
-																</div>
-												<div class="row">
-																<div class="col">
-																				<button class="btn btn-lg btn-primary btn-block" id="check">Check</button>
-																</div>
-																<div class="col">
-																				<button class="btn btn-lg btn-primary btn-block" onClick="get_question();">New example</button>
-																</div>
-												</div>
-												<div class="row">
-																<div class="col">
-																				<div class="alert">
-																								<span id="judgment"></span>
-																				</div>
-																</div>
-
-												</div>
-
-												<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-												<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-												<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-												<script>
-																var show_negative = function(neg) {
-																				if (neg) {
-																								$("#negative").text("Negatiivinen");
-																				} else {
-																								$("#negative").text("");
-																				}
-																};
+																<script>
+																								var show_negative = function(neg) {
+																																if (neg) {
+																																								$("#negative").text("negatiivinen");
+																																} else {
+																																								$("#negative").text("");
+																																}
+																								};
 
 var populate_question = function(data) {
-				$("#infinitive").text(data.infinitive);
-				$("#person").text(data.person);
-				$("#tense").text(data.tense);
-				show_negative(data.negative);
-				var check_answer = function() {
-								if ($("#answer").val() == data.answer) {
-												$("#judgment").text("Yay!").removeClass("alert-danger").addClass("alert-success");
-								} else {
-												$("#judgment").text(data.answer).removeClass("alert-success").addClass("alert-danger");
-								}
-				};
-				$("#check").click().click(check_answer);
+								$("#infinitive").text(data.infinitive);
+								$("#person").text(data.person);
+								$("#tense").text(data.tense);
+								show_negative(data.negative);
+								var check_answer = function() {
+																if ($("#answer").val() == data.answer) {
+																								$("#judgment").text("✔ Yay!").removeClass("alert-danger").addClass("alert-success");
+																} else {
+																								$("#judgment").text("✘ "+data.answer).removeClass("alert-success").addClass("alert-danger");
+																}
+																$("#check").removeClass("btn-primary").addClass("btn-secondary").removeAttr('type');
+																$("#new").removeClass("btn-secondary").addClass("btn-primary").attr('type', 'submit');
+																$("form").off('submit').on('submit', function(e) {
+																								e.preventDefault();
+																								get_question();
+																});
+								};
+								$("#check").removeClass("btn-secondary").addClass("btn-primary").attr('type', 'submit');
+								$("#new").removeClass("btn-primary").addClass("btn-secondary").removeAttr('type');
+								$("form").off('submit').on('submit', function(e) {
+																e.preventDefault();
+																check_answer();
+								});
 };
 
 var get_question = function() {
-				$.getJSON("/generate_example/", populate_question);
+								$.getJSON("/generate_example/", populate_question);
+								$("#judgment").text('').removeClass("alert-danger alert-success");
 };
 
 $(document).ready( get_question );
-												</script>
-				</body>
+																</script>
+								</body>
 </html>

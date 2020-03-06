@@ -8,10 +8,10 @@ from . import generator
 
 def generate_example(request):
     persons = {"minä": "SG1", "sinä": "SG2", "hän": "SG3", "me":"PL1", "te": "PL2", "he": "PL3"}
-    tenses = {"present": "PRESENT", "imperfect": "PAST", "perfect": "PERFECT", "plusquamperfect": "PLUSQUAMPERFECT"}
+    tenses = {"preseens": "PRESENT", "imperfekti": "PAST", "perfekti": "PERFECT", "plusqvamperfekti": "PLUSQUAMPERFECT"}
     negatives = (True, False)
     word, person, tense, negative = random.choice(generator.verbs), random.choice(list(persons)), random.choice(list(tenses)), random.choice(negatives)
-    if tense in ("perfect", "plusquamperfect"):
+    if tense in ("perfekti", "plusqvamperfekti"):
         if negative:
             answer = generator.generate_negated_perfect_verb(word[0], persons[person], tenses[tense])
         else:
