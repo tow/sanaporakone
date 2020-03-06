@@ -1,0 +1,228 @@
+VERB_AALLOTA	4	llota stem, llota : ltoa variaton
+VERB_AHNEHTIA	1	tia stem, tia : di variations
+VERB_AMPUA	1	mpua stem, mpua : mmu variations
+VERB_ARVAILLA	3	lla stem, lla : le variations
+VERB_ARVATA	4	ata stem, ata : aa variations
+VERB_AUTTAA	1	ttaa stem, ttaa : to variations
+VERB_DIGATA	4	gata stem, gata : gga variatons
+VERB_EHTIÄ	1	tiä stem, tiä : di variations
+VERB_EI	0	Negation verb ‘ei’ has heteroclitic inflection
+VERB_ENTÄÄ	1	ntää stem, ntää : nnä variations
+VERB_ERATA	4	ata stem, ata : kane variations
+VERB_ETUILLA	3	illa stem, illa : ile variation
+VERB_HALAJAA	1	ajaa stem, defective inflection
+VERB_HALJETA	6	jeta stema, jeta : kea variations
+VERB_HALUTA	4	uta stem, uta : ua variations
+VERB_HAPATA	4	pata stem, pata : ppane variations
+VERB_HARPPOA	1	ppoa stem, ppoa : po variations
+VERB_HAUKKOA	1	kkoa stem, kkoa : ko variations
+VERB_HELLITÄ	5	llitä stem, llitä : ltiä variations
+VERB_HELPOTA	4	pota stem, pota : ppone variations
+VERB_HELÄJÄÄ	1	äjää stem, defective inflection
+VERB_HERMOTTUA	1	ttua stem, ttua : tu  variation
+VERB_HERÄTELLÄ	3	tellä stem, tellä : ttele varitinost
+VERB_HIIPUA	1	pua stem, pua : vu variations
+VERB_HIVENTÄÄ	1	ntää stem, ntää : nnä variations
+VERB_HUMALTUA	1	ltua stem, ltua : llu variaitons
+VERB_HUONONTAA	1	ntaa stem, ntaa : nna variations
+VERB_HUUTAA	1	taa stem, taa : si variations
+VERB_HYLJÄTÄ	4	jätä stem, jätä : kä variations
+VERB_HYLKIÄ	1	kiä stem, kiä : ji variations
+VERB_HYPELLÄ	3	pellä stem, pellä : ppele variaton
+VERB_HYPPIÄ	1	ppiä stem, ppiä : pi variations
+VERB_HÄVÄISTÄ	3	väistä stem, väistä : päise variations
+VERB_ILJETÄ	6	jetä stem, jetä : keä variations
+VERB_INNOTA	4	nnota stem, nnota : nto variations
+VERB_IRROTA	4	rrota stem, rrota : rto variations
+VERB_ISÄNNÖIDÄ	2	öidä stem, öidä : öi ~ öitse
+VERB_JAHDATA	4	data stem, data : taa 
+VERB_JOUTAA	1	taa stem, taa : da : si 
+VERB_JUOSTA	3	sta stem, sta : ks variations
+VERB_JYRKETÄ	6	ketä stem, ketä : kkene variatons
+VERB_JÄÄDÄ	2	ädä stem, ädä : ä variatons
+VERB_KAATAA	1	taa ste, taa : do : si 
+VERB_KAIKOTA	4	kota stem, kota : kkoa variations
+VERB_KAIPAELLA	3	paella stem, paella : paile 
+VERB_KAIVATA	4	ata stem, ata : aa variatoins
+VERB_KALPPIA	1	ppia stem, ppia : pi variations
+VERB_KAMMETA	6	mmeta stem, mmeta : mpe variations
+VERB_KANTAA	1	ntaa stem, ntaa : nna variations
+VERB_KARHETA	6	eta stem, eta : enee variationys
+VERB_KARHUTA	4	uta stem, uta : ua variations
+VERB_KASVAA	1	aa stem, aa : o variations
+VERB_KATSOA	1	The regular o stem, dialectally gradating ts variations
+VERB_KAUNISTUA	1	u stem, no variations
+VERB_KAVETA	6	veta stem, veta : pene variations
+VERB_KERETÄ	6	retä stem, retä : keä variations
+VERB_KERITÄ	5	itä stem, itä : kiä variations
+VERB_KIERTYÄ	1	rtyä stem, rtyä : rry variations
+VERB_KIETOA	1	toa stem, toa : do variations
+VERB_KIHERRELLÄ	3	rrellä stem rrellä : rtele variations
+VERB_KIILLELLÄ	3	llellä stem, llellä : ltele variationys
+VERB_KIINNETÄ	6	nnetä stem, nnetä : nteä variations
+VERB_KIITÄÄ	1	tää stem, tää : dä : si variations
+VERB_KIRVOTA	4	vota stem, vota : poa variatons
+VERB_KIVETTYÄ	1	ttyä stem, ttyä : ty variations
+VERB_KIVETÄ	6	vetä stem, vetä : veä variations
+VERB_KIVISTÄÄ	1	stää stem, 
+VERB_KIVUTA	4	uta stem, uta : ua variations
+VERB_KOMENNELLA	3	nnella stem, nnella : ntele variations
+VERB_KONTIA	1	ntia stem, ntia : nni variationst
+VERB_KOPIOIDA	2	oida stem, oida : oi variations
+VERB_KORVETA	6	veta stem, veta : peaa variationst
+VERB_KOSIA	2	sia stem, no vatiation
+VERB_KOUKUTA	4	kuya sytem, kuta : kkua variations
+VERB_KUHERTAA	1	rtaa stem, rtaa :rra variatons
+VERB_KUKKIA	1	kkia stem, kkia : ki variations
+VERB_KUMMUTA	4	mmuta stem ammuta :mpua variatoins
+VERB_KUTEA	1	tea stem, tea : de varoatopmst
+VERB_KYNTÄÄ	1	ntää stem, ntää : nnä variatnos
+VERB_KYTKEÄ	1	keä stem, tkeä : tk
+VERB_KÄRKKYÄ	1	kkyä stem, kkyä : ky variatonsy
+VERB_KÄYDÄ	2	ydä stem, ydä : v variations
+VERB_KÄÄNNELLÄ	3	nnellä stem, nnellä : ntele variations
+VERB_LASSOTA	2	ssota stem, oa variations
+VERB_LEIKELLÄ	3	kellä stem, kellä : kkele variations
+VERB_LEPPYÄ	1	ppyä stem, ppyä : py variations
+VERB_LEPÄILLÄ	3	illä stem, illä : ile variations
+VERB_LEUDOTA	4	dota stem, dota : toa variations
+VERB_LEVÄTÄ	4	vätä stem, vätä : pää variatons
+VERB_LIIDUTA	4	duta stem, duta : tua variations
+VERB_LOBATA	4	bata stem, bata : bbaa variations
+VERB_LOITOTA	4	tota stem, tota : ttoa variatoins
+VERB_LOPPUA	1	ppua stem, ppua : pu variations
+VERB_LOTOTA	4	tota stem, tota : toa variatoins
+VERB_LUNTATA	4	tata stem, tata : ttaa variations
+VERB_LUUTUTA	4	tuta stem, tuta : ttua variations
+VERB_LÄHTEÄ	1	hteä stem, hteä : hde : ks variations
+VERB_LÄMMETÄ	6	metä stem, mmetä : mpeä variations
+VERB_LÄMMITÄ	5	mitä stem, mmitä : mpiä variations
+VERB_LÄNTÄTÄ	4	tätä stem, tätä : ttä variatoins
+VERB_MARISTA	3	sta stem, sta : se variations
+VERB_MAUKUA	1	ukua stem, ukua : u’u variations
+VERB_MELLAKOIDA	2	oida stem, oida : oi : oitse variatoins
+VERB_MENNÄ	3	nnä stem, nnä : ne variations 
+VERB_MERKITÄ	5	tä stem, tä : tse variations
+VERB_MIELTYÄ	1	ltyä stem, ltyä : lly variations
+VERB_MIETTIÄ	1	ttiä stem, ttiä : ti variations
+VERB_MOITTIA	1	ttia stem, ttia : ti variations
+VERB_MOJAHTAA	1	taa stem, taa : di variations
+VERB_MORKATA	4	kata stem, kata : kkaa variations
+VERB_MULLATA	4	lata stem, llata : lta variations
+VERB_MUODOTA	4	dota stem, dota : toa variations
+VERB_MUTRISTAA	1	taa stem, taa : ti variations
+VERB_MYYDÄ	2	ydä stem, ydä : 0 variations 
+VERB_MÄDÄTÄ	4	dätä stem, dätä : täne variations
+VERB_MÄIKYÄ	1	kyä stem, kyä : y variations
+VERB_MÖNKIÄ	1	nkiä stem, nkiä : ngi variations
+VERB_NAKELLA	3	kella stem, kella : kkele variations
+VERB_NAKERRELLA	3	rrella stem, rrella : rtele variations
+VERB_NIUKETA	6	keta stem, keta : kkene variations
+VERB_NUOKKUA	1	kkua stem, kkua : ku variations
+VERB_NÄHDÄ	2	hdä stem, hdä : e variations
+VERB_NÄPERTÄÄ	1	rtää stems, rtää : rrä variations
+VERB_OLLA	0	‘olla’ has heteroclitic inflection, lot of common short forms in standard spoken Finnish
+VERB_OMMELLA	3	mmella stem, mmella : mpele variations
+VERB_ONKIA	1	nkia stem, nkia : ngi variations
+VERB_PALKITA	1	ta stem, ta : tse variation
+VERB_PANNA	2	nna stem, nna : ne variations
+VERB_PEITOTA	4	tota stem, tota : ttoa variations
+VERB_PENKOA	1	nkoa stem, nkoa : ngo variations
+VERB_PIDETÄ	6	detä stem, detä : tene variations
+VERB_PIERRÄ	3	rrä stem, rrä : re variations
+VERB_PIESTÄ	3	stä stem, stä : kse variations
+VERB_PINGOTA	4	ngota stem, ngota : nkoa variations
+VERB_POIKETA	6	keta stem, keta : kkea variations
+VERB_POLKEA	1	kea stem, kea : je variations
+VERB_PUKEA	1	kea stem, kea : e variations
+VERB_PULPUTA	4	puta stem, puta : ppua variations
+VERB_PUNOA	1	oa stem, oa : o variations
+VERB_PURKAA	1	kaa stem, kaa : a variations
+VERB_PUSERTUA	1	rtua stem, rtua : rru variations
+VERB_PYYTÄÄ	1	tää stem, tää : si variations
+VERB_PÄTEÄ	1	teä stem, teä : di variations
+VERB_RAAPIA	1	pia stem, pia : vi variations
+VERB_RAIKAA	1	kaa stem, defective inflection
+VERB_RANGAISTA	3	gaista stem, gaista : kaise variations
+VERB_RENNOTA	4	nnota stem, nnota : ntoa variations
+VERB_REVETÄ	6	vetä stem, vetä : peä variations
+VERB_RIIPIÄ	1	piä stem, piä : vi variations
+VERB_ROHJETA	6	jeta stem, jeta : ke variations
+VERB_ROHTUA	1	tua stem, tua : du variations
+VERB_RYNNÄTÄ	4	nnätä stem, nnätä variations
+VERB_RYPEÄ	1	peä stem, peä : ve variations
+VERB_RYSKIÄ	1	kiä stem, no variatiosn
+VERB_RYÖPYTÄ	4	pytä stem, pytä : ppyä variations
+VERB_RÄPSYTTÄÄ	1	ttää stem, ttää : ti variations
+VERB_SAADA	2	ada stems, ada : 0 variations
+VERB_SAARTAA	1	rtaa stems, rtaa : rra variations
+VERB_SAMMOTA	4	mmota stems, mmota : mpoa variations
+VERB_SATAA	1	taa stem defective inflection
+VERB_SELVITÄ	5	vitä stem, vitä : piä variations
+VERB_SIEPATA	4	pata stem, pata : ppaa variations
+VERB_SI’ITÄ	5	’itä stem, ’itä : kiä variations
+VERB_SILIYTYÄ	1	ytyä stem, ytyä : ydy variations
+VERB_SILPOA	1	poa stem, poa : vo variations
+VERB_SIVALTAA	1	ltaa stem, ltaa : lla variations
+VERB_SORTAA	1	rtaa stem, rtaa : rra variations
+VERB_SOTKEA	1	ea stem, ea : i variations
+VERB_SULATELLA	3	tella stem, tella : ttele variations
+VERB_SUPETA	6	peta stem, peta : ppene variations
+VERB_SURRA	3	rra stem, rra : re variations
+VERB_SUUNNATA	4	nnata stem, nnata : ntaa variations
+VERB_SYÖDÄ	2	yödä stem, yödä : öi variations
+VERB_SYÖPYÄ	1	pyä stem, pyä : vy variations
+VERB_SÄILÖÄ	1	öä stem, no variations
+VERB_SÄPSÄHDELLÄ	3	dellä stem, dellä : tele variations
+VERB_SÄRKEÄ	1	keä stem, keä : je variations
+VERB_SÖRKKIÄ	1	kkiä stem, kkiä : ki variations
+VERB_TAITAA	1	taa stem, taa : da : si variations
+VERB_TAKOA	1	koa stem, koa : o variations
+VERB_TAPELLA	3	pella stem, pella : ppele variations
+VERB_TAPPAA	1	ppaa stem, ppaa : po variations
+VERB_TEMMATA	4	mmata stem, : mmata : mpaa variations
+VERB_TEMPOA	1	mpoa stem, mpoa : mmo variations
+VERB_TIETÄÄ	1	tää stem, tää : si variations
+VERB_TIPAHDELLA	3	della stem, della : tele variations
+VERB_TODETA	6	deta stem, deta : tea variations
+VERB_TUIKKAA	1	kkaa stem, kkaa : ki variations
+VERB_TULLA	3	lla stem, lla : le variations
+VERB_TUNGETA	6	ngeta stem, ngeta : nkea variations
+VERB_TUNKEA	1	nkea stem, nkea : nge variations
+VERB_TUNTEA	1	ntea stem, ntea : nne variations
+VERB_TUODA	2	uoda stem, uoda : oi variations
+VERB_TYHJENTYÄ	1	ntyä stem, ntyä : nny variations
+VERB_TYLPETÄ	6	petä stem, petä : ppene variations
+VERB_TYMPIÄ	1	mpiä stem, mpiä : mmi variations
+VERB_TÄHDÄTÄ	4	dätä stem, dätä : tää variations
+VERB_TÄHYTÄ	4	tä stem, tä : si variations
+VERB_ULOTA	4	ota stem, ota : kone variations
+VERB_UPOTA	4	pota stem, pota : ppoa variastions
+VERB_VAAHDOTA	4	dota stem, dota : toa variations
+VERB_VAELLELLA	3	llella stem, llella variations
+VERB_VAKAANTUA	1	ntua stem, ntua : nnu variations
+VERB_VARTOA	1	rtoa stem, rtoa : rro variations
+VERB_VAVISTA	3	vista stem, vista : pisee variations
+VERB_VERRATA	4	rrata stem, rrata : rta variations
+VERB_VIEDÄ	2	iedä stem, iedä : ei variatons
+VERB_VIEROITTAA	1	ttaa stem, ttaa : ta variations
+VERB_VIHELTÄÄ	1	ltää stem, ltää : llä variations
+VERB_VIITTOA	1	ttoa stem, ttoa : to variations
+VERB_VINKUA	1	nkua stem, nku : ngu variatoins
+VERB_VIPAJAA	1	ajaa stem, defective inflection
+VERB_VIRKKAA	1	kkaa stem, kkaa : ka variation
+VERB_VONGATA	4	gata stem, gata : kaa variation
+VERB_VYYHDETÄ	6	detä stem, detä : teä variations
+VERB_VÄHETÄ	6	etä stem, etä : ene varitions
+VERB_VÄLPÄTÄ	4	pätä stem, pätä : ppää variastions
+VERB_VÄNGÄTÄ	4	ngätä stem, gätä : kää variations
+VERB_YLTÄÄ	1	ltää stem, ltää : llä variations
+VERB_YNNÄTÄ	4	ätä stem, ätä : ää variations
+VERB_YSKÄHTÄÄ	1	tää stem, tää : di variations
+VERB_YÖKÄTÄ	4	kätä stem, kätä : kkää variastions
+VERB_ÄHKÄÄ	1	kää stem, kää : i variatons
+VERB_ÄKSYILLÄ	3	illä stem, illä : ile vaqiraiotns
+VERB_ÄLLISTYÄ	1	tyä stem, no variations
+VERB_ÄNGETÄ	6	getä stem, getä : keä variations
+VERB_ÄRISTÄ	3	stä stem, stä : se variations
+VERB_ÖYKKÄRÖIDÄ	2	öidä stem, öidä : öi ~ öise variations
