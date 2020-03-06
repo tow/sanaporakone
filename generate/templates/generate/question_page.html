@@ -24,7 +24,7 @@
     <h1>Sanakorakone</h1>
 
     <div class="container">
-      <div id="infinitive"></div>
+      <div style="text-transform: uppercase" id="infinitive"></div>
       <div id="tense"></div>
       <div id="negative"></div>
 
@@ -37,6 +37,8 @@
       <div class="center-block">
 	      <p id="judgment"></p>
       </div>
+
+      <button class="btn btn-lg btn-primary btn-block" onClick="get_question();">New example</button>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -45,20 +47,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <script>
-
       var populate_question = function(data) {
 	$("#infinitive").text(data.infinitive);
 	$("#person").text(data.person);
 	$("#tense").text(data.tense);
 	$("#negative").text(data.negative);
 	var check_answer = function() {
-          if ($("#answer").text() == data.answer) {
+          if ($("#answer").val() == data.answer) {
             $("#judgment").text("Yay!").removeClass("bg-danger").addClass("bg-success");
 	  } else {
             $("#judgment").text(data.answer).removeClass("bg-success").addClass("bg-danger");
 	  }
         };
-	$("#check").click(check_answer);
+	$("#check").click().click(check_answer);
       };
 
       var get_question = function() {
