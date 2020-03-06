@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic.base import TemplateView
+
 
 import generate.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', generate.views.generate_example),
+    path('generate_example/', generate.views.generate_example),
+    path('', TemplateView.as_view(template_name='generate/question_page.html')),
 ]
