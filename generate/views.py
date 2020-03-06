@@ -6,11 +6,24 @@ from django.http import HttpResponse
 
 from . import generator
 
+persons = {"minä": "SG1", "sinä": "SG2", "hän": "SG3", "me":"PL1", "te": "PL2", "he": "PL3"}
+tenses = {"preseens": "PRESENT", "imperfekti": "PAST", "perfekti": "PERFECT", "plusqvamperfekti": "PLUSQUAMPERFECT"}
+
 def generate_example(request):
-    persons = {"minä": "SG1", "sinä": "SG2", "hän": "SG3", "me":"PL1", "te": "PL2", "he": "PL3"}
-    tenses = {"preseens": "PRESENT", "imperfekti": "PAST", "perfekti": "PERFECT", "plusqvamperfekti": "PLUSQUAMPERFECT"}
+    print(request.GET)
+    req_verb = request.GET.get("verb")
+    if req_verb:
+        word = req_verb
+    else:
+        word = random.choice(generator.verbs)
+    req_tenses = request.GET.getlist("tense")
+    if req_tenses:
+        tense_list = req_tenses
+    else:
+        tense_list = tenses.keys()
+    tense = random.choice(tense_list)
     negatives = (True, False)
-    word, person, tense, negative = random.choice(generator.verbs), random.choice(list(persons)), random.choice(list(tenses)), random.choice(negatives)
+    person, negative = random.choice(list(persons)), random.choice(negatives)
     if tense in ("perfekti", "plusqvamperfekti"):
         if negative:
             answer = generator.generate_negated_perfect_verb(word[0], persons[person], tenses[tense])
