@@ -18,6 +18,7 @@ def read_verbtypes(filename):
 def read_verbs(verbfilename, verbtypesfilename):
     verbtypes = read_verbtypes(verbtypesfilename)
     verbs = []
+    vbvt = {'0':[], '1':[], '2':[], '3':[], '4':[], '5':[], '6':[]}
     with open(verbfilename) as csvfile:
         tsv_reader = csv.reader(csvfile, delimiter='\t')
         for row in tsv_reader:
@@ -26,14 +27,15 @@ def read_verbs(verbfilename, verbtypesfilename):
                 if row[2] != "1":
                     verb += "_"+row[2]
                 verbtype = row[3]
-                verbs.append((verb, verbtype, verbtypes[verbtype]))
-    return verbs
+                gen_vt = verbtypes[verbtype]
+                verbs.append((verb, verbtype, gen_vt))
+                vbvt[gen_vt].append((verb, verbtype))
+    return verbs, vbvt
 
 
 omorfi_instance = omorfi.Omorfi()
 omorfi_instance.load_generator(os.path.join(BASE_DIR, "data/omorfi.generate.hfst"))
-verbs = read_verbs(os.path.join(BASE_DIR, "data/master.tsv"), os.path.join(BASE_DIR, "data/verbityypit.tsv"))
-
+verbs, verbs_by_verbtype = read_verbs(os.path.join(BASE_DIR, "data/master.tsv"), os.path.join(BASE_DIR, "data/verbityypit.tsv"))
 
 
 def generate(word, upos, omors=""):
