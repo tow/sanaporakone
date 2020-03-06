@@ -107,7 +107,7 @@ var populate_question = function(data) {
 	show_negative(data.negative);
 	var check_answer = function() {
 		if ($("#answer").val() == data.answer) {
-			$("#judgment").text("✔ Yay!").removeClass("alert-danger").addClass("alert-success");
+			$("#judgment").text("✔ Kyllä!").removeClass("alert-danger").addClass("alert-success");
 		} else {
 			$("#judgment").text("✘ "+data.answer).removeClass("alert-success").addClass("alert-danger");
 		}

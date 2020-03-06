@@ -13,3 +13,5 @@ nicer layout for select widgets
 copyright sign at bottom
 
 install on a different machine behind public IP
+
+use sqlite instead of tsv
