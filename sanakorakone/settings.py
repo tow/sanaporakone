@@ -25,7 +25,7 @@ SECRET_KEY = 'n7!j#z2owv47=f)nf!17!ug0a59n!h2i)+gahvxdv5y$fjk76j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.80", "91.159.2.15", "sanakorakone.digitalisto.fi"]
+ALLOWED_HOSTS = ["127.0.0.1", "192.168.1.80", "91.159.2.15", "sanakorakone.digitalisto.fi"]
 
 
 # Application definition
