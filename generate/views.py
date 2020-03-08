@@ -22,8 +22,6 @@ def generate_example(request):
         verbs = generator.verbs
     word = random.choice(verbs)
 
-    negatives = (True, False)
-
     req_tenses = request.GET.getlist("tense")
     if req_tenses:
         tense_list = req_tenses
@@ -31,7 +29,12 @@ def generate_example(request):
         tense_list = list(tenses)
     tense = random.choice(tense_list)
 
-    person, negative = random.choice(list(persons)), random.choice(negatives)
+    if "ignore_negative" in request.GET:
+        negative = False
+    else:
+        negative = random.choice((True, False))
+
+    person = random.choice(list(persons))
 
     if tense in ("perfekti", "plusqvamperfekti"):
         if negative:
