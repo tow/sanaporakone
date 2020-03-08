@@ -106,7 +106,7 @@ var populate_question = function(data) {
 	$("#tense").text(data.tense);
 	show_negative(data.negative);
 	var check_answer = function() {
-		if ($("#answer").val() == data.answer) {
+		if ($("#answer").val().toLowerCase().trim() == data.answer) {
 			$("#judgment").text("✔ Kyllä!").removeClass("alert-danger").addClass("alert-success");
 		} else {
 			$("#judgment").text("✘ "+data.answer).removeClass("alert-success").addClass("alert-danger");
