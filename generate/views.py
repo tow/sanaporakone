@@ -13,7 +13,7 @@ def generate_example(request):
     req_verb = request.GET.get("verb")
     req_verbtypes = request.GET.getlist("verbtype")
     if req_verb:
-        verbs = [(req_verb,)]
+        verbs = [(req_verb.lower(),)]
     elif req_verbtypes:
         verbs = []
         for verbtype in req_verbtypes:
