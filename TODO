@@ -18,4 +18,9 @@ use sqlite instead of tsv
 
 DONE request verb should lowercase
 
-lose the _2 on some verbs
+DONE lose the _2 on some verbs
+
+Scoring system: keep score by type, tense, negativeness, person. Show this to highlight any weak points.
+(later: also do this by weak/strong mutation to capture problems there also)
+
+in case of a failure, put in a letter-by-letter diff
