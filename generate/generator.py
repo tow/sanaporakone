@@ -19,17 +19,21 @@ def read_verbs(verbfilename, verbtypesfilename):
     verbtypes = read_verbtypes(verbtypesfilename)
     verbs = []
     vbvt = {'0':[], '1':[], '2':[], '3':[], '4':[], '5':[], '6':[]}
+    lastverb = ""
     with open(verbfilename) as csvfile:
         tsv_reader = csv.reader(csvfile, delimiter='\t')
         for row in tsv_reader:
             if row[0] == "VERB":
                 verb = row[1]
-                if row[2] != "1":
-                    verb += "_"+row[2]
+                if row[2] != "1" and lastverb == verb:
+                    # TODO. Work out something sensible to do with duplicate verbs
+                    break
                 verbtype = row[3]
                 gen_vt = verbtypes[verbtype]
                 verbs.append((verb, verbtype, gen_vt))
                 vbvt[gen_vt].append((verb, verbtype))
+                lastverb = verb
+
     return verbs, vbvt
 
 
