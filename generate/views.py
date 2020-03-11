@@ -21,6 +21,7 @@ def generate_example(request):
     else:
         verbs = generator.verbs
     word = random.choice(verbs)
+    verbtype = word[2]
 
     req_tenses = request.GET.getlist("tense")
     if req_tenses:
@@ -47,6 +48,11 @@ def generate_example(request):
         else:
             answer = generator.generate_simple_verb(word[0], persons[person], tenses[tense])
 
-    example = {"infinitive": word[0], "person": person, "tense": tense, "negative": negative, "answer": answer}
+    index = str(verbtype) + \
+        {"preseens":"1", "imperfekti":"2", "perfekti":"3", "plusqvamperfekti":"4"}[tense] + \
+        ("2" if negative else "1") + \
+        {"minä":"1", "sinä":"2", "hän":"3", "me":"4", "te":"5", "he":"6"}[person]
+
+    example = {"index": index, "infinitive": word[0], "person": person, "tense": tense, "negative": negative, "answer": answer}
 
     return HttpResponse(json.dumps(example))

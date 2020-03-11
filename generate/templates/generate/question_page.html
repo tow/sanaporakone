@@ -54,6 +54,28 @@
 				</div>
 				<div class="row">
 					<div class="col">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col"></th>
+									<th scope="col">Right</span</th>
+									<th scope="col">Total</th>
+									<th scope="col">Percent</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">Overall</th>
+									<td><span id="rights"></span></td>
+									<td><span id="wrongs"></span></td>
+									<td><span id="percent"></span></td>
+								</tr>
+							</tbody>
+						</table>	
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
 						<a class="btn button-sm btn-outline-secondary" data-toggle="collapse" href="#options-row" role="button" aria-expanded="false" aria-controls="options-row">Vaihtoehdot</a>
 					</div>
 				</div>
@@ -211,10 +233,13 @@ var populate_question = function(data) {
 		var user_answer = $("#answer").val().toLowerCase().trim();
 		if (user_answer == data.answer) {
 			$("#judgment").text("✔ Kyllä!").removeClass("alert-danger").addClass("alert-success");
+			rights[data.index]++;
 		} else {
 			var answerdiff = diffString(user_answer, data.answer)
 			$("#judgment").html("✘ "+answerdiff+'<br>'+data.answer).removeClass("alert-success").addClass("alert-danger");
+			wrongs[data.index]++;
 		}
+		display_scores();
 		$("#check").removeClass("btn-primary").addClass("btn-secondary").removeAttr('type');
 		$("#new").removeClass("btn-secondary").addClass("btn-primary").attr('type', 'submit');
 		$("form").off('submit').on('submit', function(e) {
@@ -236,7 +261,56 @@ var get_question = function() {
 	$("#judgment").text('').removeClass("alert-danger alert-success");
 };
 
-$(document).ready( get_question );
+var get_scores = function() {
+	var total_wrongs = 0;
+	var total_rights = 0;
+	for (let k in rights) {
+		total_rights += rights[k];
+	}
+	for (let k in wrongs) {
+		total_wrongs += wrongs[k];
+	}
+	var total = total_rights + total_wrongs;
+	return {
+		"rights": total_rights,
+		"wrongs": total_wrongs,
+		"percent": 100.0 * total_rights / total || 0
+	};
+};
+
+var display_scores = function() {
+	var scores = get_scores();
+	$("#rights").text(scores.rights);
+	$("#wrongs").text(scores.percent);
+	$("#percent").text(scores.percent);
+}
+
+// array key is {verbtype|tense|negation|person}
+// verbtype 1 to 6
+// tense 1 = present, 2 = imperfect, 3 = perfect, 4 = pluperfect
+// negation 1 = positive, 2 = negative
+// person 1 = SG1, ... 6 = PL3
+var rights = {}; // or get from localcache
+var wrongs = {}; // or get from localcache
+for (var verbtype=1; verbtype<=6; verbtype++) {
+	for (var tense=1; tense<=4; tense++) {
+		for (var negative=1; negative<=2; negative++) {
+			for (var person=1; person<=6; person++) {
+				var index =	
+					verbtype.toString() +
+					tense.toString() +
+					negative.toString() +
+					person.toString();
+				rights[index] = 0;
+				wrongs[index] = 0;
+			}
+		}
+	}
+}
+																					$(document).ready( function() {
+		display_scores();
+		get_question();
+	});
 		</script>
 	</body>
 </html>
