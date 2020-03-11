@@ -27,7 +27,7 @@ def read_verbs(verbfilename, verbtypesfilename):
                 verb = row[1]
                 if row[2] != "1" and lastverb == verb:
                     # TODO. Work out something sensible to do with duplicate verbs
-                    break
+                    continue
                 verbtype = row[3]
                 gen_vt = verbtypes[verbtype]
                 verbs.append((verb, verbtype, gen_vt))
