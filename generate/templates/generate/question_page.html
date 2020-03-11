@@ -76,6 +76,9 @@
 				</div>
 				<div class="row">
 					<div class="col">
+						<a class="btn button-sm btn-outline-secondary" onClick="clear_scores();" role="button" aria-expanded="false">Tyhjentä pisteet</a>
+					</div>
+					<div class="col">
 						<a class="btn button-sm btn-outline-secondary" data-toggle="collapse" href="#options-row" role="button" aria-expanded="false" aria-controls="options-row">Vaihtoehdot</a>
 					</div>
 				</div>
@@ -316,6 +319,13 @@ var setup_scores = function() {
 		localStorage.setItem("scores", JSON.stringify(scores));
 	}
 };
+var clear_scores = function() {
+	scores = null;
+	localStorage.removeItem("scores");
+	setup_scores();
+	display_scores();
+};
+
 $(document).ready( function() {
 	setup_scores();
 	display_scores();
