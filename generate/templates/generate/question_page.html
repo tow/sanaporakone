@@ -67,7 +67,7 @@
 								<tr>
 									<th scope="row">Overall</th>
 									<td><span id="rights"></span></td>
-									<td><span id="wrongs"></span></td>
+									<td><span id="total"></span></td>
 									<td><span id="percent"></span></td>
 								</tr>
 							</tbody>
@@ -278,15 +278,16 @@ var get_scores = function() {
 	return {
 		"rights": total_rights,
 		"wrongs": total_wrongs,
+		"total": total_rights+total_wrongs,
 		"percent": 100.0 * total_rights / total || 0
 	};
 };
 
 var display_scores = function() {
-	var scores = get_scores();
-	$("#rights").text(scores.rights);
-	$("#wrongs").text(scores.wrongs);
-	$("#percent").text(Math.round(100*scores.percent)/100);
+	var summed_scores = get_scores();
+	$("#rights").text(summed_scores.rights);
+	$("#total").text(summed_scores.total);
+	$("#percent").text(Math.round(100*summed_scores.percent)/100);
 }
 
 var scores;
