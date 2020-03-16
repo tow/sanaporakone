@@ -24,3 +24,20 @@ Scoring system: keep score by type, tense, negativeness, person. Show this to hi
 (later: also do this by weak/strong mutation to capture problems there also)
 
 DONE in case of a failure, put in a letter-by-letter diff
+
+allow excluding irregular verbs
+allow choosing verbs with weak/strong variations.
+
+don't send out examples with "---" for generated verb
+
+
+
+SCORES:
+I want to be able to know, for each tuple of
+(verbtype, tense, negation, person)
+ what my score is.
+I also want to be able to sum that up over at least verbtype and tense.
+I want to see this as an overall score that I can drill down into.
+For the score I want to see %age and also numbers
+It should be maintained within the context of the session and also maybe stored in localcache.
+
