@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -116,108 +117,23 @@
 				</div>
 			</form>	
 		</div>
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="{% static "generate/jquery-3.4.1.min.js" %}"></script>
+		<script src="{% static "generate/popper-1.12.9.min.js" %}"></script>
+		<script src="{% static "generate/bootstrap-4.0.0.min.js" %}"></script>
+		<script src="{% static "generate/diff_match_patch.js" %}"></script>
 
 		<script>
-			/*
-			* Javascript Diff Algorithm
-			 *  By John Resig (http://ejohn.org/)
-			 *  Modified by Chu Alan "sprite"
-			 *
-			 * Released under the MIT license.
-			 *
-			 * More Info:
-			 *  http://ejohn.org/projects/javascript-diff-algorithm/
-			 */
 
 function escape(s) {
-	var n = s;
-	n = n.replace(/&/g, "&amp;");
-	n = n.replace(/</g, "&lt;");
-	n = n.replace(/>/g, "&gt;");
-	n = n.replace(/"/g, "&quot;");
+       var n = s;
+       n = n.replace(/&/g, "&amp;");
+       n = n.replace(/</g, "&lt;");
+       n = n.replace(/>/g, "&gt;");
+       n = n.replace(/"/g, "&quot;");
 
-	return n;
+       return n;
 }
 
-function diffString( o, n ) {
-	o = o.replace(/\s+$/, '');
-	n = n.replace(/\s+$/, '');
-
-	var out = diff(o == "" ? [] : o.split(""), n == "" ? [] : n.split("") );
-	var str = "";
-
-	if (out.n.length == 0) {
-		for (var i = 0; i < out.o.length; i++) {
-			str += '<del>' + escape(out.o[i]) + "</del>";
-		}
-	} else {
-		if (out.n[0].text == null) {
-			for (n = 0; n < out.o.length && out.o[n].text == null; n++) {
-				str += '<del>' + escape(out.o[n]) + "</del>";
-			}
-		}
-
-		for ( var i = 0; i < out.n.length; i++ ) {
-			if (out.n[i].text == null) {
-				str += '<ins>' + escape(out.n[i]) + "</ins>";
-			} else {
-				var pre = "";
-
-				for (n = out.n[i].row + 1; n < out.o.length && out.o[n].text == null; n++ ) {
-					pre += '<del>' + escape(out.o[n]) + "</del>";
-				}
-				str += out.n[i].text + pre;
-			}
-		}
-	}
-
-	return str;
-}
-
-function diff( o, n ) {
-	var ns = new Object();
-	var os = new Object();
-
-	for ( var i = 0; i < n.length; i++ ) {
-		if ( ns[ n[i] ] == null )
-			ns[ n[i] ] = { rows: new Array(), o: null };
-		ns[ n[i] ].rows.push( i );
-	}
-
-	for ( var i = 0; i < o.length; i++ ) {
-		if ( os[ o[i] ] == null )
-			os[ o[i] ] = { rows: new Array(), n: null };
-		os[ o[i] ].rows.push( i );
-	}
-
-	for ( var i in ns ) {
-		if ( ns[i].rows.length == 1 && typeof(os[i]) != "undefined" && os[i].rows.length == 1 ) {
-			n[ ns[i].rows[0] ] = { text: n[ ns[i].rows[0] ], row: os[i].rows[0] };
-			o[ os[i].rows[0] ] = { text: o[ os[i].rows[0] ], row: ns[i].rows[0] };
-		}
-	}
-
-	for ( var i = 0; i < n.length - 1; i++ ) {
-																					if ( n[i].text != null && n[i+1].text == null && n[i].row + 1 < o.length && o[ n[i].row + 1 ].text == null && 
-																					n[i+1] == o[ n[i].row + 1 ] ) {
-																					n[i+1] = { text: n[i+1], row: n[i].row + 1 };
-																					o[n[i].row+1] = { text: o[n[i].row+1], row: i + 1 };
-																					}
-																					}
-
-																					for ( var i = n.length - 1; i > 0; i-- ) {
-																						if ( n[i].text != null && n[i-1].text == null && n[i].row > 0 && o[ n[i].row - 1 ].text == null && 
-																							n[i-1] == o[ n[i].row - 1 ] ) {
-																							n[i-1] = { text: n[i-1], row: n[i].row - 1 };
-																							o[n[i].row-1] = { text: o[n[i].row-1], row: i - 1 };
-																						}
-																					}
-
-	return { o: o, n: n };
-}
 
 var show_negative = function(neg) {
 	if (neg) {
@@ -236,13 +152,29 @@ var populate_question = function(data) {
 		var user_answer = $("#answer").val().toLowerCase().trim();
 		if (user_answer == data.answer) {
 			$("#judgment").text("✔ Kyllä!").removeClass("alert-danger").addClass("alert-success");
-			scores.rights[data.index]++;
+			window.scores.rights[data.index]++;
 		} else {
-			var answerdiff = diffString(user_answer, data.answer)
+			var dmp = new diff_match_patch();
+                        var diff = dmp.diff_main(user_answer, data.answer);
+                        dmp.diff_cleanupSemantic(diff);
+                        // Result: [(-1, "Hello"), (1, "Goodbye"), (0, " World.")]
+			console.log(diff);
+			var answerdiff = "";
+			for (let k in diff) {
+				console.log(k);
+				let d = diff[k];
+				if (d[0] == -1) {
+					answerdiff += "<del>" + escape(d[1]) + "</del>";
+				} else if (d[0] == 1) {
+					answerdiff += "<ins>" + escape(d[1]) + "</ins>";
+				} else {
+					answerdiff += escape(d[1]);
+				}
+			}
 			$("#judgment").html("✘ "+answerdiff+'<br>'+data.answer).removeClass("alert-success").addClass("alert-danger");
-			scores.wrongs[data.index]++;
+			window.scores.wrongs[data.index]++;
 		}
-		localStorage.setItem("scores", JSON.stringify(scores));
+		localStorage.setItem("scores", JSON.stringify(window.scores));
 		display_scores();
 		$("#check").removeClass("btn-primary").addClass("btn-secondary").removeAttr('type');
 		$("#new").removeClass("btn-secondary").addClass("btn-primary").attr('type', 'submit');
@@ -268,11 +200,11 @@ var get_question = function() {
 var get_scores = function() {
 	var total_wrongs = 0;
 	var total_rights = 0;
-	for (let k in scores.rights) {
-		total_rights += scores.rights[k];
+	for (let k in window.scores.rights) {
+		total_rights += window.scores.rights[k];
 	}
 	for (let k in scores.wrongs) {
-		total_wrongs += scores.wrongs[k];
+		total_wrongs += window.scores.wrongs[k];
 	}
 	var total = total_rights + total_wrongs;
 	return {
@@ -290,18 +222,17 @@ var display_scores = function() {
 	$("#percent").text(Math.round(100*summed_scores.percent)/100);
 }
 
-var scores;
 var setup_scores = function() {
-	scores = localStorage.getItem("scores");
-	if (scores) {
-		scores = JSON.parse(scores);
+	var s = localStorage.getItem("scores");
+	if (s) {
+		window.scores = JSON.parse(s);
 	} else {
 		// array key is {verbtype|tense|negation|person}
 		// verbtype 1 to 6
 		// tense 1 = present, 2 = imperfect, 3 = perfect, 4 = pluperfect
 		// negation 1 = positive, 2 = negative
 		// person 1 = SG1, ... 6 = PL3
-		scores = {"rights": {}, "wrongs": {}};
+		window.scores = {"rights": {}, "wrongs": {}};
 		for (var verbtype=1; verbtype<7; verbtype++) {
 			for (var tense=1; tense<5; tense++) {
 				for (var negative=1; negative<3; negative++) {
@@ -311,17 +242,17 @@ var setup_scores = function() {
 							tense.toString() +
 							negative.toString() +
 							person.toString();
-						scores.rights[index] = 0;
-						scores.wrongs[index] = 0;
+						window.scores.rights[index] = 0;
+						window.scores.wrongs[index] = 0;
 					}
 				}
 			}
 		}
-		localStorage.setItem("scores", JSON.stringify(scores));
+		localStorage.setItem("scores", JSON.stringify(window.scores));
 	}
 };
 var clear_scores = function() {
-	scores = null;
+	window.scores = null;
 	localStorage.removeItem("scores");
 	setup_scores();
 	display_scores();
