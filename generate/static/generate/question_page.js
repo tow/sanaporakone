@@ -15,7 +15,7 @@ var populate_question = function(data) {
 		var user_answer = $("#answer").val().toLowerCase().trim();
 		if (user_answer == data.answer) {
 			$("#judgment").empty().text("✔ Kyllä!").removeClass("alert-danger").addClass("alert-success");
-			window.scores.rights[data.index]++;
+			incrementScore("rights_"+data.index);
 		} else {
 			var answerdiv = $("<div>");
 			answerdiv.append($("<span>").text("✘ "));
@@ -23,8 +23,8 @@ var populate_question = function(data) {
 			var diff = dmp.diff_main(user_answer, data.answer);
 			dmp.diff_cleanupSemantic(diff);
 			// Result: [(-1, "Hello"), (1, "Goodbye"), (0, " World.")]
-			for (let k in diff) {
-				let d = diff[k];
+			for (const k in diff) {
+				const d = diff[k];
 				let el = null;
 				if (d[0] == -1) {
 					el = $("<del>");
@@ -37,11 +37,9 @@ var populate_question = function(data) {
 			}
 			answerdiv.append($("<br>"));
 			answerdiv.append($("<span>").text(data.answer));
-			console.log(answerdiv);
 			$("#judgment").empty().append(answerdiv).removeClass("alert-success").addClass("alert-danger");
-			window.scores.wrongs[data.index]++;
+			incrementScore("wrongs_"+data.index);
 		}
-		localStorage.setItem("scores", JSON.stringify(window.scores));
 		display_scores();
 		$("#check").removeClass("btn-primary").addClass("btn-secondary").removeAttr('type');
 		$("#new").removeClass("btn-secondary").addClass("btn-primary").attr('type', 'submit');
@@ -67,11 +65,9 @@ var get_question = function() {
 var get_scores = function() {
 	var total_wrongs = 0;
 	var total_rights = 0;
-	for (let k in window.scores.rights) {
-		total_rights += window.scores.rights[k];
-	}
-	for (let k in scores.wrongs) {
-		total_wrongs += window.scores.wrongs[k];
+	for (const i of scoreIterator()) {
+		total_rights += Number(localStorage.getItem("scores_rights_"+i));
+		total_wrongs += Number(localStorage.getItem("scores_wrongs_"+i));
 	}
 	var total = total_rights + total_wrongs;
 	return {
@@ -89,44 +85,42 @@ var display_scores = function() {
 	$("#percent").text(Math.round(100*summed_scores.percent)/100);
 }
 
-var setup_scores = function() {
-	var s = localStorage.getItem("scores");
-	if (s) {
-		window.scores = JSON.parse(s);
-	} else {
-		// array key is {verbtype|tense|negation|person}
-		// verbtype 1 to 6
-		// tense 1 = present, 2 = imperfect, 3 = perfect, 4 = pluperfect
-		// negation 1 = positive, 2 = negative
-		// person 1 = SG1, ... 6 = PL3
-		window.scores = {"rights": {}, "wrongs": {}};
-		for (var verbtype=1; verbtype<7; verbtype++) {
-			for (var tense=1; tense<5; tense++) {
-				for (var negative=1; negative<3; negative++) {
-					for (var person=1; person<7; person++) {
-						var index =	
-							verbtype.toString() +
-							tense.toString() +
-							negative.toString() +
-							person.toString();
-						window.scores.rights[index] = 0;
-						window.scores.wrongs[index] = 0;
-					}
+var scoreIterator = function*() {
+	// array key is {verbtype|tense|negation|person}
+	// verbtype 1 to 6
+	// tense 1 = present, 2 = imperfect, 3 = perfect, 4 = pluperfect
+	// negation 1 = positive, 2 = negative
+	// person 1 = SG1, ... 6 = PL3
+	for (var verbtype=1; verbtype<7; verbtype++) {
+		for (var tense=1; tense<5; tense++) {
+			for (var negative=1; negative<3; negative++) {
+				for (var person=1; person<7; person++) {
+					const index = 	
+						verbtype.toString() +
+						tense.toString() +
+						negative.toString() +
+						person.toString();
+					yield index;
 				}
 			}
 		}
-		localStorage.setItem("scores", JSON.stringify(window.scores));
 	}
 };
+
+var incrementScore = function(index) {
+	const s = Number(localStorage.getItem("scores_"+index));
+	localStorage.setItem("scores_"+index, s+1);
+}
+
 var clear_scores = function() {
-	window.scores = null;
-	localStorage.removeItem("scores");
-	setup_scores();
+	for (const i of scoreIterator()) {
+  	 	localStorage.removeItem("scores_rights_"+index);
+  	 	localStorage.removeItem("scores_wrongs_"+index);
+	}
 	display_scores();
 };
 
 $(document).ready( function() {
-	setup_scores();
 	display_scores();
 	get_question();
 });
