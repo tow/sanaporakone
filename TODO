@@ -20,6 +20,7 @@ DONE request verb should lowercase
 
 DONE lose the _2 on some verbs
 
+Incorporate https://github.com/scijs/ndarray to manage the scores, this will let us slice and dice more usefully
 Scoring system: keep score by type, tense, negativeness, person. Show this to highlight any weak points.
 (later: also do this by weak/strong mutation to capture problems there also)
 
