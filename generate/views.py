@@ -54,6 +54,8 @@ def get_answer(word, tense, negative, person):
 def generate_example(request):
     req_verb = request.GET.get("verb")
     req_verbtypes = request.GET.getlist("verbtype")
+    verb_specified = bool(req_verb)
+
     word = get_word(req_verb, req_verbtypes)
     verbtype = word[2]
 

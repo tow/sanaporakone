@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def read_verbtypes(filename):
     verbtypes = {}
-    with open(filename) as csvfile:
+    with open(filename, encoding='utf-8') as csvfile:
         tsv_reader = csv.reader(csvfile, delimiter='\t')
         for row in tsv_reader:
             verbtypes[row[0]] = row[1]
@@ -20,7 +20,7 @@ def read_verbs(verbfilename, verbtypesfilename):
     verbs = []
     vbvt = {'0':[], '1':[], '2':[], '3':[], '4':[], '5':[], '6':[]}
     lastverb = ""
-    with open(verbfilename) as csvfile:
+    with open(verbfilename, encoding='utf-8') as csvfile:
         tsv_reader = csv.reader(csvfile, delimiter='\t')
         for row in tsv_reader:
             if row[0] == "VERB":
