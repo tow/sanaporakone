@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: spk-deployment
+        labels:
+                app: spk
+spec:
+        replicas: 2
+        selector:
+                matchLabels:
+                        app: spk
+        template:
+                metadata:
+                        labels:
+                                app: spk
+                spec:
+                        containers:
+                                - name: spk
+                                  image: spk:0.1.1
+                                  ports:
+                                  - containerPort: 8000
