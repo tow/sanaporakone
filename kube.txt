@@ -1,0 +1,11 @@
+
+VERSION=0.1.1
+
+# create a docker image and import it to local registry
+sudo docker build -t spk:$VERSION . && sudo docker save spk:$VERSION | microk8s ctr image import -
+
+# redeploy
+microk8s kubectl apply -f deployment.yaml
+
+# re-expost
+microk8s kubectl apply -f service.yaml
