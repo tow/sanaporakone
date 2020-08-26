@@ -11,7 +11,7 @@ tenses = {"preseens": "PRESENT", "imperfekti": "PAST", "perfekti": "PERFECT", "p
 
 def get_word(req_verb, req_verbtypes):
     if req_verb:
-        verbs = [(req_verb.lower(),)]
+        verbs = [v for v in generator.verbs if v==req_verb.lower()]
     elif req_verbtypes:
         verbs = []
         for verbtype in req_verbtypes:

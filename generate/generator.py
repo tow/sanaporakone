@@ -31,7 +31,7 @@ def read_verbs(verbfilename, verbtypesfilename):
                 verbtype = row[3]
                 gen_vt = verbtypes[verbtype]
                 verbs.append((verb, verbtype, gen_vt))
-                vbvt[gen_vt].append((verb, verbtype))
+                vbvt[gen_vt].append((verb, verbtype, gen_vt))
                 lastverb = verb
 
     return verbs, vbvt
