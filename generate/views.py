@@ -3,7 +3,7 @@ import random
 
 from django.http import HttpResponse
 
-
+from verbs.models import Verb
 from . import generator
 
 persons = {"minä": "SG1", "sinä": "SG2", "hän": "SG3", "me":"PL1", "te": "PL2", "he": "PL3"}
@@ -11,15 +11,12 @@ tenses = {"preseens": "PRESENT", "imperfekti": "PAST", "perfekti": "PERFECT", "p
 
 def get_word(req_verb, req_verbtypes):
     if req_verb:
-        verbs = [v for v in generator.verbs if v==req_verb.lower()]
+        verb_qs = Verb.objects.filter(a_infinitive=req_verb.lower())
     elif req_verbtypes:
-        verbs = []
-        for verbtype in req_verbtypes:
-            verbs.extend(generator.verbs_by_verbtype[verbtype])
+        verb_qs = Verb.objects.filter(verbtype_i=verbtype)
     else:
-        verbs = generator.verbs
-    word = random.choice(verbs)
-    return word
+        verb_qs = Verb.objects.all()
+    return verb_qs.order_by('?')[0]
 
 def get_modifiers(req_tenses, req_negative):
     if req_tenses:
@@ -37,17 +34,17 @@ def get_modifiers(req_tenses, req_negative):
 
     return tense, negative, person
 
-def get_answer(word, tense, negative, person):
+def get_answer(a_infinitive, tense, negative, person):
     if tense in ("perfekti", "plusqvamperfekti"):
         if negative:
-            answer = generator.generate_negated_perfect_verb(word[0], persons[person], tenses[tense])
+            answer = generator.generate_negated_perfect_verb(a_infinitive, persons[person], tenses[tense])
         else:
-            answer = generator.generate_perfect_verb(word[0], persons[person], tenses[tense])
+            answer = generator.generate_perfect_verb(a_infinitive, persons[person], tenses[tense])
     else:
         if negative:
-            answer = generator.generate_negated_verb(word[0], persons[person], tenses[tense])
+            answer = generator.generate_negated_verb(a_infinitive, persons[person], tenses[tense])
         else:
-            answer = generator.generate_simple_verb(word[0], persons[person], tenses[tense])
+            answer = generator.generate_simple_verb(a_infinitive, persons[person], tenses[tense])
 
     return answer
 
@@ -56,20 +53,19 @@ def generate_example(request):
     req_verbtypes = request.GET.getlist("verbtype")
     verb_specified = bool(req_verb)
 
-    word = get_word(req_verb, req_verbtypes)
-    verbtype = word[2]
+    verb = get_word(req_verb, req_verbtypes)
 
     req_tenses = request.GET.getlist("tense")
     req_negative = "ignore_negative" in request.GET
     tense, negative, person = get_modifiers(req_tenses, req_negative)
 
-    answer = get_answer(word, tense, negative, person)
+    answer = get_answer(verb.a_infinitive, tense, negative, person)
 
-    index = str(verbtype) + \
+    index = str(verb.verbtype_i) + \
         {"preseens":"1", "imperfekti":"2", "perfekti":"3", "plusqvamperfekti":"4"}[tense] + \
         ("2" if negative else "1") + \
         {"minä":"1", "sinä":"2", "hän":"3", "me":"4", "te":"5", "he":"6"}[person]
 
-    example = {"index": index, "infinitive": word[0], "person": person, "tense": tense, "negative": negative, "answer": answer}
+    example = {"index": index, "infinitive": verb.a_infinitive, "person": person, "tense": tense, "negative": negative, "answer": answer}
 
     return HttpResponse(json.dumps(example))

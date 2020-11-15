@@ -4,8 +4,15 @@ import os
 
 import omorfi
 
+from verbs.models import Verb
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+
+def read_wikiwords(wikifilename):
+    with open(wikifilename, encoding='utf-8') as f:
+        wordlist = {row.split("\t")[1].strip() for row in f.readlines()}
+    return wordlist
 
 def read_verbtypes(filename):
     verbtypes = {}
@@ -15,32 +22,38 @@ def read_verbtypes(filename):
             verbtypes[row[0]] = row[1]
     return verbtypes
 
-def read_verbs(verbfilename, verbtypesfilename):
+def read_verbs(verbfilename, verbtypesfilename, wikiwordfilename):
     verbtypes = read_verbtypes(verbtypesfilename)
-    verbs = []
-    vbvt = {'0':[], '1':[], '2':[], '3':[], '4':[], '5':[], '6':[]}
+    wikiwords = read_wikiwords(wikiwordfilename)
     lastverb = ""
     with open(verbfilename, encoding='utf-8') as csvfile:
         tsv_reader = csv.reader(csvfile, delimiter='\t')
-        for row in tsv_reader:
-            if row[0] == "VERB":
-                verb = row[1]
-                if row[2] != "1" and lastverb == verb:
-                    # TODO. Work out something sensible to do with duplicate verbs
-                    continue
-                verbtype = row[3]
-                gen_vt = verbtypes[verbtype]
-                verbs.append((verb, verbtype, gen_vt))
-                vbvt[gen_vt].append((verb, verbtype, gen_vt))
-                lastverb = verb
-
+        words = {row[1]:row for row in tsv_reader if row[0] == "VERB"}
+        useful_verbs = set(words) & set(wikiwords)
+        for verb in useful_verbs:
+            row = words[verb]
+            if row[2] != "1" and lastverb == verb:
+                # TODO. Work out something sensible to do with duplicate verbs
+                continue
+            verbtype = row[3]
+            gen_vt = verbtypes[verbtype]
+            if not Verb.objects.filter(a_infinitive=verb).exists():
+                Verb.objects.create(a_infinitive=verb,
+                                    verbtype=verbtype,
+                                    verbtype_i=gen_vt,
+                                    glosses=[])
+            lastverb = verb
+    
     return verbs, vbvt
 
 
 omorfi_instance = omorfi.Omorfi()
 omorfi_instance.load_generator(os.path.join(BASE_DIR, "data/omorfi.generate.hfst"))
-verbs, verbs_by_verbtype = read_verbs(os.path.join(BASE_DIR, "data/master.tsv"), os.path.join(BASE_DIR, "data/verbityypit.tsv"))
 
+def generate_db_tables():
+    read_verbs(os.path.join(BASE_DIR, "data/master.tsv"),
+               os.path.join(BASE_DIR, "data/verbityypit.tsv"),
+               os.path.join(BASE_DIR, "data/fiwiktionary-latest-all-titles"))
 
 def generate(word, upos, omors=""):
     """Generate word-form."""
