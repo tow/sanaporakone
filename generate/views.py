@@ -13,9 +13,9 @@ def get_word(req_verb, req_verbtypes):
     if req_verb:
         verb_qs = Verb.objects.filter(a_infinitive=req_verb.lower())
     elif req_verbtypes:
-        verb_qs = Verb.objects.filter(verbtype_i=verbtype)
+        verb_qs = Verb.objects.filter(verbtype_i=verbtype).exclude(glosses=[])
     else:
-        verb_qs = Verb.objects.all()
+        verb_qs = Verb.objects.exclude(glosses=[])
     return verb_qs.order_by('?')[0]
 
 def get_modifiers(req_tenses, req_negative):
@@ -66,6 +66,6 @@ def generate_example(request):
         ("2" if negative else "1") + \
         {"minä":"1", "sinä":"2", "hän":"3", "me":"4", "te":"5", "he":"6"}[person]
 
-    example = {"index": index, "infinitive": verb.a_infinitive, "person": person, "tense": tense, "negative": negative, "answer": answer}
+    example = {"index": index, "infinitive": verb.a_infinitive, "glosses": " ".join(verb.glosses), "person": person, "tense": tense, "negative": negative, "answer": answer}
 
     return HttpResponse(json.dumps(example))
