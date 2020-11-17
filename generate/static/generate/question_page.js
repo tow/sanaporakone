@@ -8,7 +8,7 @@ var show_negative = function(neg) {
 
 var populate_question = function(data) {
 	$("#infinitive").text(data.infinitive);
-	$("#glosses").text(data.glosses);
+        $("#glosses ol").html(data.glosses.map(function(t){return $("<li/>").text(t);}));
 	$("#person").text(data.person);
 	$("#tense").text(data.tense);
 	show_negative(data.negative);

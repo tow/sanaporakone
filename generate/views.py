@@ -66,6 +66,6 @@ def generate_example(request):
         ("2" if negative else "1") + \
         {"minä":"1", "sinä":"2", "hän":"3", "me":"4", "te":"5", "he":"6"}[person]
 
-    example = {"index": index, "infinitive": verb.a_infinitive, "glosses": " ".join(verb.glosses), "person": person, "tense": tense, "negative": negative, "answer": answer}
+    example = {"index": index, "infinitive": verb.a_infinitive, "glosses": verb.glosses, "person": person, "tense": tense, "negative": negative, "answer": answer}
 
     return HttpResponse(json.dumps(example))
