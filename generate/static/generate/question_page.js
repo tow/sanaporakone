@@ -71,18 +71,15 @@ var populate_question = function(data) {
 	});
 };
 
-var get_question = function(opts) {
-        if (opts) {
-             var url = new URL("/generate_example/", document.location);
-             for (const [k, v] of Object.entries(opts)) {
-                 if (v) {
-                     url.searchParams.set(k, v);
-                 }
-             }
-             var u = url.toString();
-        } else {
-             var u = "/generate_example/?"+$("form").serialize()
-        };
+var get_question = function(verb) {
+        var u = "/generate_example/?"+$("form").serialize()
+        if (!$("#verb").prop("value") && verb) {
+             // if it is set in the form, the user has chosen it, so don't override
+             // if it is not in the form but it is in function args, then it is set in the URL, use that as a backup
+             var url = new URL(u, document.location);
+             url.searchParams.set("verb", verb);
+             u = url.toString();
+	}
 	$.getJSON(u, populate_question);
 	$("#answer").val('');
 	$("#judgment").text('').removeClass("alert-danger alert-success");
@@ -146,13 +143,23 @@ var clear_scores = function() {
 	display_scores();
 };
 
-var get_opts = function() {
+var get_and_set_opts = function() {
         var url = new URL(document.location);
-        var opts = {verb: url.searchParams.get("verb")};
-        return opts;
+
+        $.each(url.searchParams.getAll("tense"), function(i,e) {
+             $("#tense option[value='" + e + "']").prop("selected", true);
+        });
+        if (url.searchParams.get("ignore_negative")!=null) {
+             $("#ignore_negative").prop("checked", true);
+        }
+        $.each(url.searchParams.getAll("verbtype"), function(i,e) {
+             $("#verbtype option[value='" + e + "']").prop("selected", true);
+        });
+
+        return url.searchParams.get("verb");
 }; 
 
 $(document).ready( function() {
 	display_scores();
-	get_question(get_opts());
+	get_question(get_and_set_opts());
 });
