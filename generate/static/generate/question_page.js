@@ -1,6 +1,19 @@
-var update_url_options = function() {
-        var url = get_options()
-        history.pushState(null, null, url);
+var update_url_options = function(tense, ignore_negative, verbtype) {
+        var url = new URL(document.location);
+	url.searchParams.delete("verb");
+	url.searchParams.delete("tense");
+	for (const v of tense) {
+	    url.searchParams.append("tense", v);
+	}
+	url.searchParams.delete("ignore_negative");
+	if (ignore_negative) {
+            url.searchParams.append("ignore_negative", "");
+	}
+	url.searchParams.delete("verbtype");
+	for (const v of verbtype) {
+	    url.searchParams.append("verbtype", v);
+	}
+        history.pushState(null, null, url.toString());
 };
 
 var update_url_word = function(word) {
@@ -23,7 +36,7 @@ var populate_question = function(data) {
 	$("#infinitive").text(data.infinitive);
         $("#glosses ol").html(data.glosses.map(function(t){return $("<li/>").text(t);}));
 	$("#person").text(data.person);
-	$("#tense").text(data.tense);
+	$("#aikamuoto").text(data.tense);
 	show_negative(data.negative);
 	var check_answer = function() {
 		var user_answer = $("#answer").val().toLowerCase().trim();
@@ -59,7 +72,10 @@ var populate_question = function(data) {
 		$("#new").removeClass("btn-secondary").addClass("btn-primary").attr('type', 'submit');
 		$("form").off('submit').on('submit', function(e) {
 			e.preventDefault();
-                 //       update_url();
+                        update_url_options(
+				$("#tense").val(),
+				$("#ignore_negative").prop("checked"),
+				$("#verbtype").val());
 			get_question();
 		});
 	};
