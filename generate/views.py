@@ -13,7 +13,7 @@ def get_word(req_verb, req_verbtypes):
     if req_verb:
         verb_qs = Verb.objects.filter(a_infinitive=req_verb.lower())
     elif req_verbtypes:
-        verb_qs = Verb.objects.filter(verbtype_i=verbtype).exclude(glosses=[])
+        verb_qs = Verb.objects.filter(verbtype_i__in=req_verbtypes).exclude(glosses=[])
     else:
         verb_qs = Verb.objects.exclude(glosses=[])
     return verb_qs.order_by('?')[0]
