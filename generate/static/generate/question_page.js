@@ -1,3 +1,15 @@
+var update_url_options = function() {
+        var url = get_options()
+        history.pushState(null, null, url);
+};
+
+var update_url_word = function(word) {
+        var u = new URL(document.location);
+        var params = u.searchParams;
+        u.searchParams.set("verb", word);
+        history.pushState(null, null, u.toString());
+};
+
 var show_negative = function(neg) {
 	if (neg) {
 		$("#negative").text("negatiivinen");
@@ -7,6 +19,7 @@ var show_negative = function(neg) {
 };
 
 var populate_question = function(data) {
+        update_url_word(data.infinitive);
 	$("#infinitive").text(data.infinitive);
         $("#glosses ol").html(data.glosses.map(function(t){return $("<li/>").text(t);}));
 	$("#person").text(data.person);
@@ -46,6 +59,7 @@ var populate_question = function(data) {
 		$("#new").removeClass("btn-secondary").addClass("btn-primary").attr('type', 'submit');
 		$("form").off('submit').on('submit', function(e) {
 			e.preventDefault();
+                 //       update_url();
 			get_question();
 		});
 	};
@@ -57,8 +71,19 @@ var populate_question = function(data) {
 	});
 };
 
-var get_question = function() {
-	$.getJSON("/generate_example/?"+$("form").serialize(), populate_question);
+var get_question = function(opts) {
+        if (opts) {
+             var url = new URL("/generate_example/", document.location);
+             for (const [k, v] of Object.entries(opts)) {
+                 if (v) {
+                     url.searchParams.set(k, v);
+                 }
+             }
+             var u = url.toString();
+        } else {
+             var u = "/generate_example/?"+$("form").serialize()
+        };
+	$.getJSON(u, populate_question);
 	$("#answer").val('');
 	$("#judgment").text('').removeClass("alert-danger alert-success");
 };
@@ -121,7 +146,13 @@ var clear_scores = function() {
 	display_scores();
 };
 
+var get_opts = function() {
+        var url = new URL(document.location);
+        var opts = {verb: url.searchParams.get("verb")};
+        return opts;
+}; 
+
 $(document).ready( function() {
 	display_scores();
-	get_question();
+	get_question(get_opts());
 });
