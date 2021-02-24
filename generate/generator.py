@@ -89,14 +89,13 @@ def generate_negated_verb(word, person, tense):
 
 
 def generate_perfect_verb(word, person, tense):
-    spec = "[VOICE=ACT][MOOD=INDV][TENSE=PRESENT][PERS={person}]"
-    verb = generate("olla_2", "VERB", spec.format(person=person))
     if tense == "PLUSQUAMPERFECT":
-        if person[:2] == "SG":
-            ollut = "ollut"
-        elif person[:2] == "PL":
-            ollut = "olleet"
-        verb = verb + " " + ollut
+        olla_tense = "PAST"
+    else:
+        olla_tense = "PRESENT"
+    spec = "[VOICE=ACT][MOOD=INDV][TENSE={olla_tense}][PERS={person}]"
+    verb = generate("olla_2", "VERB", spec.format(olla_tense=olla_tense,
+                                                  person=person))
     spec = "[VOICE=ACT][MOOD=INDV][TENSE=PAST][NUM={pers}][NEG=CON]"
     pcp = generate(word, "VERB", spec.format(pers=person[:2]))
     return verb + " " + pcp
