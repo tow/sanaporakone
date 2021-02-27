@@ -8,5 +8,5 @@ spec:
                 app: spk
         ports:
                 - protocol: TCP
-                  port: 8000
+                  port: 80
                   nodePort: 31072

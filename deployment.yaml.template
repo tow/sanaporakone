@@ -18,4 +18,4 @@ spec:
                                 - name: spk
                                   image: spk:{{VERSION}}
                                   ports:
-                                  - containerPort: 8000
+                                  - containerPort: 80
